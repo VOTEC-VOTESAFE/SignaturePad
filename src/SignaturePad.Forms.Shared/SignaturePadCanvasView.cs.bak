@@ -34,12 +34,6 @@ namespace SignaturePad.Forms
 			typeof (SignaturePadView),
 			default (ICommand));
 
-		public static readonly BindableProperty DoubleTappedCommandProperty = BindableProperty.Create (
-			nameof (DoubleTappedCommand),
-			typeof (ICommand),
-			typeof (SignaturePadView),
-			default (ICommand));
-
 		internal static readonly BindablePropertyKey IsBlankPropertyKey = BindableProperty.CreateReadOnly (
 			nameof (IsBlank),
 			typeof (bool),
@@ -86,12 +80,6 @@ namespace SignaturePad.Forms
 		{
 			get => (ICommand)GetValue (StrokeCompletedCommandProperty);
 			set => SetValue (StrokeCompletedCommandProperty, value);
-		}
-
-		public ICommand DoubleTappedCommand
-		{
-			get => (ICommand)GetValue (DoubleTappedCommandProperty);
-			set => SetValue (DoubleTappedCommandProperty, value);
 		}
 
 		/// <summary>
@@ -269,18 +257,6 @@ namespace SignaturePad.Forms
 			}
 		}
 
-		internal void OnDoubleTapped ()
-		{
-			UpdateBindableProperties ();
-
-			DoubleTapped?.Invoke (this, EventArgs.Empty);
-
-			if (DoubleTappedCommand != null && DoubleTappedCommand.CanExecute (null))
-			{
-				DoubleTappedCommand.Execute (null);
-			}
-		}
-
 		internal void OnCleared ()
 		{
 			UpdateBindableProperties ();
@@ -299,7 +275,6 @@ namespace SignaturePad.Forms
 		}
 
 		public event EventHandler StrokeCompleted;
-		public event EventHandler DoubleTapped;
 		public event EventHandler Cleared;
 
 		internal event EventHandler<ImageStreamRequestedEventArgs> ImageStreamRequested;

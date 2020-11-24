@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using Android.App;
@@ -8,15 +7,11 @@ using Android.Graphics;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
-using Bitmap = Android.Graphics.Bitmap;
-using SizeF = Android.Util.SizeF;
 
 namespace Xamarin.Controls
 {
-	partial class InkPresenter : View, GestureDetector.IOnGestureListener, GestureDetector.IOnDoubleTapListener
+	partial class InkPresenter : View
 	{
-		GestureDetector _gestures;
-
 		static InkPresenter ()
 		{
 			// we may be in a designer
@@ -36,81 +31,23 @@ namespace Xamarin.Controls
 			: base (context)
 		{
 			Initialize ();
-			Console.WriteLine ("**** InkPresenter: Init Gesture");
-			_gestures = new GestureDetector (context, this);
-			_gestures.SetOnDoubleTapListener (this);
 		}
 
 		private void Initialize ()
 		{
 		}
 
-		public static int ElapsedTime (long started)
-		{
-			started = started & int.MaxValue;
-			int cur = Environment.TickCount & int.MaxValue;
-
-			int istarted = (int)started;
-			if (istarted > cur)
-			{
-				return cur + (int.MaxValue - istarted);
-			}
-
-			return cur - istarted;
-
-		}
-
-		public static bool HasElapsed (int started, int length)
-		{
-			int elapsed = ElapsedTime (started);
-			if (elapsed > length)
-				return true;
-			return false;
-		}
-
-		int _dblTapStart = -1;
-		float _tapPosX = -1;
-		float _tapPosY = -1;
-
 		public override bool OnTouchEvent (MotionEvent e)
 		{
-			float x = e.GetX ();
-			float y = e.GetY ();
-			Console.WriteLine ($"TOUCH: {e.Action}:{x},{y}:{ElapsedTime (_dblTapStart)}");
-
-			if (e.Action == MotionEventActions.Down)
-			{
-				if (!HasElapsed (_dblTapStart, 800))
-				{
-					if (Math.Abs (x - _tapPosX) < 100 && Math.Abs (y - _tapPosY) < 100)
-					{
-						// 2 Downs in proximity of distance and time
-						_dblTapStart = -1;
-
-						// Double tap detected
-						OnDoubleTapped ();
-					}
-				}
-				else
-				{
-					_dblTapStart = System.Environment.TickCount;
-					_tapPosX = x;
-					_tapPosY = y;
-				}
-			}
-
 			switch (e.Action)
 			{
 				case MotionEventActions.Down:
-					Console.WriteLine ("TOUCHES_BEGAN");
 					TouchesBegan (e);
 					return true;
 				case MotionEventActions.Move:
-					Console.WriteLine ("TOUCHE_MOVE");
 					TouchesMoved (e);
 					return true;
 				case MotionEventActions.Up:
-					Console.WriteLine ("TOUCHES_ENDED");
 					TouchesEnded (e);
 					return true;
 			}
@@ -297,51 +234,6 @@ namespace Xamarin.Controls
 			}
 
 			return image;
-		}
-
-		public bool OnDown (MotionEvent e)
-		{
-			return false;
-		}
-
-		public bool OnFling (MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-		{
-			return false;
-		}
-
-		public void OnLongPress (MotionEvent e)
-		{
-		}
-
-		public bool OnScroll (MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
-		{
-			return false;
-		}
-
-		public void OnShowPress (MotionEvent e)
-		{
-		}
-
-		public bool OnSingleTapUp (MotionEvent e)
-		{
-			return false;
-		}
-
-		public bool OnDoubleTap (MotionEvent e)
-		{
-			// Handle Double Tap Now
-			OnDoubleTapped();
-			return true;
-		}
-
-		public bool OnDoubleTapEvent (MotionEvent e)
-		{
-			return false;
-		}
-
-		public bool OnSingleTapConfirmed (MotionEvent e)
-		{
-			return false;
 		}
 	}
 }

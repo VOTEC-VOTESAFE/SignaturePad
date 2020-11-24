@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoreGraphics;
 using Foundation;
 using UIKit;
-
-using System.Threading.Tasks;
 
 namespace Xamarin.Controls
 {
@@ -36,10 +33,8 @@ namespace Xamarin.Controls
 		// an InkPresenter are dispatched to the ScrollView below
 		public override bool GestureRecognizerShouldBegin (UIGestureRecognizer gestureRecognizer) => false;
 
-        private bool singleTapNeeded = false;
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
-            singleTapNeeded = false;
 			// create a new path and set the options
 			currentPath = new InkStroke (UIBezierPath.Create (), new List<CGPoint> (), StrokeColor, StrokeWidth);
 
@@ -53,17 +48,6 @@ namespace Xamarin.Controls
 
 			// update the dirty rectangle
 			ResetBounds (touchLocation);
-
-			Console.WriteLine ("InkPresenter: Touches Began");
-
-			if (touch != null)
-			{
-				Console.WriteLine ($"InkPresenter: TapCount: {touch.TapCount}");
-				if (touch.TapCount == 2)
-				{
-					OnDoubleTapped ();
-				}
-			}
 		}
 
 		public override void TouchesMoved (NSSet touches, UIEvent evt)
@@ -95,7 +79,7 @@ namespace Xamarin.Controls
 			TouchesEnded (touches, evt);
 		}
 
-		public override async void TouchesEnded (NSSet touches, UIEvent evt)
+		public override void TouchesEnded (NSSet touches, UIEvent evt)
 		{
 			// obtain the location of the touch
 			var touch = touches.AnyObject as UITouch;
@@ -110,41 +94,10 @@ namespace Xamarin.Controls
 					currentPath.Path.AddLineTo (touchLocation);
 					currentPath.GetPoints ().Add (touchLocation);
 				}
-                else if (touch.TapCount == 1)
-                {
-					// Single Tap
-					singleTapNeeded = true;
-					await Task.Delay (300);
-					if (singleTapNeeded)
-					{
-						//CGRect r = new CGRect (touchLocation.X, touchLocation.Y, StrokeWidth, StrokeWidth);
-						//var c = UIBezierPath.FromOval (r);
-						var s = new InkStroke(new UIBezierPath(), new List<CGPoint> (), StrokeColor, StrokeWidth);
-						s.Path.MoveTo (touchLocation);
-						s.GetPoints ().Add (touchLocation);
-						var dest = new CGPoint (touchLocation.X + StrokeWidth, touchLocation.Y + StrokeWidth);
-						s.Path.AddLineTo (dest);
-						s.GetPoints ().Add (dest);
-						paths.Add (s);
-
-						s = new InkStroke (new UIBezierPath (), new List<CGPoint> (), StrokeColor, StrokeWidth);
-						var src = new CGPoint (touchLocation.X + StrokeWidth, touchLocation.Y);
-						s.Path.MoveTo (src);
-						s.GetPoints ().Add (src);
-						dest = new CGPoint (touchLocation.X, touchLocation.Y + StrokeWidth);
-						s.Path.AddLineTo (dest);
-						s.GetPoints ().Add (dest);
-						paths.Add (s);
-
-					};
-                }
 
 				// obtain the smoothed path, and add it to the old paths
-				if (currentPath != null)
-				{
-					var smoothed = PathSmoothing.SmoothedPathWithGranularity (currentPath, 4);
-					paths.Add (smoothed);
-				}
+				var smoothed = PathSmoothing.SmoothedPathWithGranularity (currentPath, 4);
+				paths.Add (smoothed);
 			}
 
 			// clear the current path
@@ -192,7 +145,7 @@ namespace Xamarin.Controls
 				context.SetLineJoin (CGLineJoin.Round);
 				context.SetStrokeColor (currentPath.Color.CGColor);
 				context.SetLineWidth (currentPath.Width);
-				
+
 				context.AddPath (currentPath.Path.CGPath);
 				context.StrokePath ();
 			}

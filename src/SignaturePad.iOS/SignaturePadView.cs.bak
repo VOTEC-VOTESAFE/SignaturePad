@@ -50,10 +50,6 @@ namespace Xamarin.Controls
 				{
 					OnSignatureStrokeCompleted ();
 				};
-				SignaturePadCanvas.DblTapped += delegate
-				{
-					OnDoubleTapped ();
-				};
 				SignaturePadCanvas.Cleared += delegate
 				{
 					OnSignatureCleared ();

@@ -58,7 +58,6 @@ namespace Xamarin.Controls
 		public bool IsBlank => SignaturePadCanvas?.IsBlank ?? true;
 
 		public event EventHandler StrokeCompleted;
-		public event EventHandler DblTapped;
 
 		public event EventHandler Cleared;
 
@@ -258,11 +257,6 @@ namespace Xamarin.Controls
 		{
 			UpdateUi ();
 			StrokeCompleted?.Invoke (this, EventArgs.Empty);
-		}
-		private void OnDoubleTapped ()
-		{
-			UpdateUi ();
-			DblTapped?.Invoke (this, EventArgs.Empty);
 		}
 	}
 }

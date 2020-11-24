@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>uap10.0.16299</TargetFramework>
-    <RootNamespace>SignaturePad.Forms</RootNamespace>
-    <AssemblyName>SignaturePad.Forms</AssemblyName>
+s    <TargetFramework>uap10.0.16299</TargetFramework>
+    <RootNamespace>Xamarin.Controls</RootNamespace>
+    <AssemblyName>SignaturePad</AssemblyName>
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
     <DocumentationFile Condition=" '$(Configuration)' == 'Release' ">bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
     <AssemblyVersion>1.0.0</AssemblyVersion>
@@ -11,8 +11,8 @@
 
   <PropertyGroup>
     <Version>1.0.0</Version>
-    <PackageId>Xamarin.Controls.SignaturePad.Forms</PackageId>
-    <Title>SignaturePad for Xamarin.Forms</Title>
+    <PackageId>Xamarin.Controls.SignaturePad</PackageId>
+    <Title>SignaturePad for Xamarin and Windows</Title>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
@@ -32,13 +32,12 @@
   <ItemGroup>
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.0.8" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
-    <ProjectReference Include="..\SignaturePad.UWP\SignaturePad.UWP.csproj" />
+    <PackageReference Include="Win2D.uwp" Version="1.21.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\SignaturePad.Forms.Shared\**\*.cs" Link="%(filename).shared%(Extension)" />
-    <Compile Include="..\SignaturePad.Forms.Platform.Shared\**\*.cs" Link="%(filename).platform%(Extension)" />
+    <Compile Include="..\SignaturePad.Shared\**\*.cs" Link="%(filename).shared%(Extension)" />
+    <Page Include="Themes\Generic.xaml" Generator="MSBuild:Compile" />
   </ItemGroup>
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />

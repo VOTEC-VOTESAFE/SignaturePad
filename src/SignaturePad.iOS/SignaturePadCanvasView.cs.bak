@@ -44,7 +44,6 @@ namespace Xamarin.Controls
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			};
 			inkPresenter.StrokeCompleted += OnStrokeCompleted;
-			inkPresenter.DoubleTapped += OnDoubleTapped;
 			AddSubview (inkPresenter);
 
 			StrokeWidth = ImageConstructionSettings.DefaultStrokeWidth;

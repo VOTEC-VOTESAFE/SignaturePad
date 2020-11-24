@@ -42,7 +42,6 @@ namespace SignaturePad.Forms
 		public static readonly BindableProperty BackgroundImageOpacityProperty;
 		public static readonly BindableProperty ClearedCommandProperty;
 		public static readonly BindableProperty StrokeCompletedCommandProperty;
-		public static readonly BindableProperty DoubleTappedCommandProperty;
 		internal static readonly BindablePropertyKey IsBlankPropertyKey;
 		public static readonly BindableProperty IsBlankProperty;
 
@@ -181,11 +180,6 @@ namespace SignaturePad.Forms
 				typeof (SignaturePadView),
 				default (ICommand));
 
-			DoubleTappedCommandProperty = BindableProperty.Create (
-				nameof (DoubleTappedCommand),
-				typeof (ICommand),
-				typeof (SignaturePadView),
-				default (ICommand));
 			IsBlankPropertyKey = BindableProperty.CreateReadOnly (
 				nameof (IsBlank),
 				typeof (bool),
@@ -290,10 +284,6 @@ namespace SignaturePad.Forms
 			SignaturePadCanvas.StrokeCompleted += delegate
 			{
 				OnSignatureStrokeCompleted ();
-			};
-			SignaturePadCanvas.DoubleTapped += delegate
-			{
-				OnDoubleTapped ();
 			};
 			SignaturePadCanvas.Cleared += delegate
 			{
@@ -543,14 +533,8 @@ namespace SignaturePad.Forms
 			get => (ICommand)GetValue (StrokeCompletedCommandProperty);
 			set => SetValue (StrokeCompletedCommandProperty, value);
 		}
-		public ICommand DoubleTappedCommand
-		{
-			get => (ICommand)GetValue (DoubleTappedCommandProperty);
-			set => SetValue (DoubleTappedCommandProperty, value);
-		}
 
 		public event EventHandler StrokeCompleted;
-		public event EventHandler DoubleTapped;
 
 		public event EventHandler Cleared;
 
@@ -671,20 +655,6 @@ namespace SignaturePad.Forms
 			if (StrokeCompletedCommand != null && StrokeCompletedCommand.CanExecute (null))
 			{
 				StrokeCompletedCommand.Execute (null);
-			}
-		}
-
-		private void OnDoubleTapped ()
-		{
-			UpdateBindableProperties ();
-
-			UpdateUi ();
-
-			DoubleTapped?.Invoke (this, EventArgs.Empty);
-
-			if (DoubleTappedCommand != null && DoubleTappedCommand.CanExecute (null))
-			{
-				DoubleTappedCommand.Execute (null);
 			}
 		}
 

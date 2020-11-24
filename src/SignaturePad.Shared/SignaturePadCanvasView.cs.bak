@@ -41,7 +41,6 @@ namespace Xamarin.Controls
 	partial class SignaturePadCanvasView
 	{
 		public event EventHandler StrokeCompleted;
-		public event EventHandler DblTapped;
 
 		public event EventHandler Cleared;
 
@@ -522,17 +521,10 @@ namespace Xamarin.Controls
 		{
 			OnStrokeCompleted (this, EventArgs.Empty);
 		}
-		private void OnStrokeOnDoubleTapped ()
-		{
-			OnDoubleTapped (this, EventArgs.Empty);
-		}
+
 		private void OnStrokeCompleted (object sender, EventArgs e)
 		{
 			StrokeCompleted?.Invoke (this, e);
-		}
-		private void OnDoubleTapped(object sender, EventArgs e)
-		{
-			DblTapped?.Invoke (this, e);
 		}
 	}
 }

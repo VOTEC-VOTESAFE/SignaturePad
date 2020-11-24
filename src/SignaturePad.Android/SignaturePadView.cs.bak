@@ -86,7 +86,6 @@ namespace Xamarin.Controls
 
 			// attach the events
 			SignaturePadCanvas.StrokeCompleted += (sender, e) => OnSignatureStrokeCompleted ();
-			SignaturePadCanvas.DblTapped += (sender, e) => OnDoubleTapped ();
 			SignaturePadCanvas.Cleared += (sender, e) => OnSignatureCleared ();
 			ClearLabel.Click += (sender, e) => OnClearTapped ();
 

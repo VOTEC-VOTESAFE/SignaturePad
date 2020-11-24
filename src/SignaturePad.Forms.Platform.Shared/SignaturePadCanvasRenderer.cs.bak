@@ -61,7 +61,6 @@ namespace SignaturePad.Forms
 #endif
 
 				native.StrokeCompleted += OnStrokeCompleted;
-				native.DblTapped += OnDoubleTapped;
 				native.Cleared += OnCleared;
 
 				SetNativeControl (native);
@@ -104,11 +103,6 @@ namespace SignaturePad.Forms
 		private void OnStrokeCompleted (object sender, EventArgs e)
 		{
 			Element?.OnStrokeCompleted ();
-		}
-
-		private void OnDoubleTapped (object sender, EventArgs e)
-		{
-			Element?.OnDoubleTapped ();
 		}
 
 		private void OnCleared (object sender, EventArgs e)

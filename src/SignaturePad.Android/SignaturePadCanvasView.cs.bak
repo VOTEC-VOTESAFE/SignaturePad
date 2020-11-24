@@ -37,7 +37,6 @@ namespace Xamarin.Controls
 				LayoutParameters = new FrameLayout.LayoutParams (FrameLayout.LayoutParams.MatchParent, FrameLayout.LayoutParams.MatchParent)
 			};
 			inkPresenter.StrokeCompleted += OnStrokeCompleted;
-			inkPresenter.DoubleTapped += OnDoubleTapped;
 			AddView (inkPresenter);
 
 			StrokeWidth = ImageConstructionSettings.DefaultStrokeWidth;

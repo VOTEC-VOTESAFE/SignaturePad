@@ -91,7 +91,6 @@ namespace Xamarin.Controls
 		// public events
 
 		public event EventHandler StrokeCompleted;
-		public event EventHandler DoubleTapped;
 
 		// public methods
 
@@ -213,10 +212,6 @@ namespace Xamarin.Controls
 		private void OnStrokeCompleted ()
 		{
 			StrokeCompleted?.Invoke (this, EventArgs.Empty);
-		}
-		private void OnDoubleTapped ()
-		{
-			DoubleTapped?.Invoke (this, EventArgs.Empty);
 		}
 	}
 }
