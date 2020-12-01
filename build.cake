@@ -1,3 +1,10 @@
+#tool nuget:?package=vswhere
+
+DirectoryPath vsLatest  = VSWhereLatest();
+FilePath msBuildPathX64 = (vsLatest==null)
+                            ? null
+                            : vsLatest.CombineWithFilePath("./MSBuild/Current/Bin/amd64/MSBuild.exe");
+
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 ///////////////////////////////////////////////////////////////////////////////
@@ -23,6 +30,7 @@ Task("libs")
     var sln = IsRunningOnWindows() ? "./src/SignaturePad.sln" : "./src/SignaturePad.Mac.sln";
 
     MSBuild(sln, new MSBuildSettings {
+	    ToolPath = msBuildPathX64,
         Verbosity = Verbosity.Minimal,
         Configuration = configuration,
         PlatformTarget = PlatformTarget.MSIL,
