@@ -51,12 +51,14 @@ Task("libs")
     CopyFiles($"./src/SignaturePad.Android/bin/{configuration}/SignaturePad.*", "./output/android/");
     CopyFiles($"./src/SignaturePad.iOS/bin/{configuration}/SignaturePad.*", "./output/ios/");
     CopyFiles($"./src/SignaturePad.UWP/bin/{configuration}/SignaturePad.*", "./output/uwp/");
-    CopyFiles($"./src/SignaturePad.UWP/bin/{configuration}/Themes/*", "./output/uwp/Themes");
+    CopyFiles($"./src/SignaturePad.UWP/obj/{configuration}/*.xml", "./output/uwp/");
+    CopyFiles($"./src/SignaturePad.UWP/obj/{configuration}/Themes/*", "./output/uwp/Themes");
 
     CopyFiles($"./src/SignaturePad.Forms.Droid/bin/{configuration}/SignaturePad.Forms.*", "./output/android/");
     CopyFiles($"./src/SignaturePad.Forms.iOS/bin/{configuration}/SignaturePad.Forms.*", "./output/ios/");
     CopyFiles($"./src/SignaturePad.Forms.UWP/bin/{configuration}/SignaturePad.Forms.*", "./output/uwp/");
-    CopyFiles($"./src/SignaturePad.Forms.UWP/bin/{configuration}/Themes/*", "./output/uwp/Themes");
+    CopyFiles($"./src/SignaturePad.Forms.UWP/obj/{configuration}/*.xml", "./output/uwp/");
+    CopyFiles($"./src/SignaturePad.Forms.UWP/obj/{configuration}/Themes/*", "./output/uwp/Themes");
     CopyFiles($"./src/SignaturePad.Forms/bin/{configuration}/SignaturePad.Forms.*", "./output/netstandard/");
 });
 
@@ -97,8 +99,8 @@ Task("samples")
     };
 
 	MSBuild("./samples/Sample.Android/Sample.Android.sln", settings);
-	MSBuild("./samples/Sample.iOS/Sample.iOS.sln", settings);
-	MSBuild("./samples/Sample.Forms/Sample.Forms.Mac.sln", settings);
+	//MSBuild("./samples/Sample.iOS/Sample.iOS.sln", settings);
+	//MSBuild("./samples/Sample.Forms/Sample.Forms.Mac.sln", settings);
 
 });
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignaturePad.iOS", "SignaturePad.iOS\SignaturePad.iOS.csproj", "{BEF71536-787B-431F-AC7F-A6469710D11F}"
 EndProject
@@ -26,7 +26,6 @@ Global
 		{BEF71536-787B-431F-AC7F-A6469710D11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BEF71536-787B-431F-AC7F-A6469710D11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEF71536-787B-431F-AC7F-A6469710D11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BEF71536-787B-431F-AC7F-A6469710D11F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1A16CB9-A759-42C8-8F0B-3C9698A55336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1A16CB9-A759-42C8-8F0B-3C9698A55336}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1A16CB9-A759-42C8-8F0B-3C9698A55336}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,7 +41,6 @@ Global
 		{B12D20AA-0EDF-4903-B385-BB8090848532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B12D20AA-0EDF-4903-B385-BB8090848532}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B12D20AA-0EDF-4903-B385-BB8090848532}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B12D20AA-0EDF-4903-B385-BB8090848532}.Release|Any CPU.Build.0 = Release|Any CPU
 		{16131FDC-D50B-4EF2-8ECC-661184FF80DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{16131FDC-D50B-4EF2-8ECC-661184FF80DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16131FDC-D50B-4EF2-8ECC-661184FF80DB}.Release|Any CPU.ActiveCfg = Release|Any CPU

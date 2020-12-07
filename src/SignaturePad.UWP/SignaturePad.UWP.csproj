@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>uap10.0.16299</TargetFramework>
+    <TargetFramework>uap10.0.18362</TargetFramework>
     <RootNamespace>Xamarin.Controls</RootNamespace>
     <AssemblyName>SignaturePad</AssemblyName>
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
@@ -37,7 +37,9 @@
 
   <ItemGroup>
     <Compile Include="..\SignaturePad.Shared\**\*.cs" Link="%(filename).shared%(Extension)" />
-    <Page Include="Themes\Generic.xaml" Generator="MSBuild:Compile" />
+    <Page Include="Themes\Generic.xaml" Generator="MSBuild:Compile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
   </ItemGroup>
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
