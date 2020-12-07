@@ -91,6 +91,7 @@ Task("samples")
     .Does(() =>
 {
     var settings = new MSBuildSettings {
+		ToolPath = msBuildPathX64,
         Verbosity = Verbosity.Minimal,
         Configuration = configuration,
         PlatformTarget = PlatformTarget.MSIL,
